@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.raydel.substantialsubs.MainActivity">
+
+    <EditText
+        android:id="@+id/name_editText"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="644dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/paymentMethod_textView"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Customer Name"
+        android:inputType="textPersonName"
+        android:maxWidth="1000dp"
+        android:minWidth="200dp" />
+
+    <EditText
+        android:id="@+id/phone_editText"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="642dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/name_editText"
+        android:layout_below="@+id/name_editText"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:maxWidth="1000dp"
+        android:minWidth="200dp" />
+
+    <EditText
+        android:id="@+id/address_editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="634dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/phone_editText"
+        android:layout_below="@+id/phone_editText"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPostalAddress"
+        android:maxWidth="1000dp"
+        android:minWidth="200dp" />
+
+    <TextView
+        android:id="@+id/paymentMethod_textView"
+        android:layout_width="156dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/address_editText"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Payment Method:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <RadioGroup
+        android:id="@+id/paymentMethod_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/paymentMethod_textView"
+        android:layout_below="@+id/paymentMethod_textView" >
+
+        <RadioButton
+            android:id="@+id/cash_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/paymentMethod_textView"
+            android:layout_below="@+id/paymentMethod_textView"
+            android:text="Cash" />
+
+        <RadioButton
+            android:id="@+id/creditCard_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/cash_radioButton"
+            android:layout_below="@+id/cash_radioButton"
+            android:text="Credit Card" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/ccNumber_editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/name_editText"
+        android:layout_marginTop="310dp"
+        android:ems="10"
+        android:hint="Credit Card Number"
+        android:inputType="numberSigned"
+        android:maxWidth="1000dp"
+        android:minWidth="200dp" />
+
+    <EditText
+        android:id="@+id/ccExpMM_editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ccNumber_editText"
+        android:layout_below="@+id/ccNumber_editText"
+        android:imeOptions="actionNext"
+        android:layout_marginTop="20dp"
+        android:width="40dp"
+        android:ems="10"
+        android:hint="MM"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/ccExpYYYY_editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/div_textView"
+        android:layout_toEndOf="@+id/div_textView"
+        android:imeOptions="actionNext"
+        android:width="80dp"
+        android:ems="10"
+        android:hint="YYYY"
+        android:inputType="numberSigned" />
+
+    <EditText
+        android:id="@+id/ccCVV_editText"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/ccNumber_editText"
+        android:layout_alignBottom="@+id/ccExpYYYY_editText"
+        android:width="60dp"
+        android:ems="10"
+        android:hint="CVV"
+        android:inputType="numberSigned" />
+
+    <TextView
+        android:id="@+id/div_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ccExpMM_editText"
+        android:layout_toEndOf="@+id/ccExpMM_editText"
+        android:text="/"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/custDetailsBack_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="50dp"
+        android:onClick="custDetailsBack_onClick"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/custDetailsNext_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="50dp"
+        android:onClick="custDetailsNext_onClick"
+        android:text="Next" />
+
+
+
+
+</RelativeLayout>

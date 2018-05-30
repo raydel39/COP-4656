@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.raydel.substantialsubs.MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Lunch"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/dateTextView_modify"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sales: $"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Credit Card Sales: $"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Credit Card Amount:"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="10dp"
+        android:layout_alignStart="@+id/textView4" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Catering:"
+        android:id="@+id/textView10"
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="18dp"
+        android:layout_alignStart="@+id/textView5"  />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:id="@+id/lunchCatering"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10"
+        android:layout_marginLeft="10dp"
+        android:hint="optional"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:id="@+id/modify_lunchSale"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:id="@+id/modify_lunchCCSales"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:id="@+id/modify_lunchCCAmount"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Day of Week"
+        android:id="@+id/dayOftheWeekTextView_modify"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/dateTextView_modify"
+        android:layout_below="@+id/dayOftheWeekTextView_modify"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Night Sale"
+        android:id="@+id/textViewModifyNight"
+        android:layout_below="@+id/textView10"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sales: $"
+        android:id="@+id/textView7"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textViewModifyNight"
+        android:layout_alignLeft="@+id/textViewModifyNight"
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Credit Card Sales: $"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/textViewModifyNight"
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Credit Card Amount: "
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView9"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textViewModifyNight"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:id="@+id/modify_nightSale"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:id="@+id/modify_nightCCSales"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:id="@+id/modify_nightCCAmount"
+        android:layout_alignBottom="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9"
+        android:layout_marginLeft="10dp"
+        android:text="0" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:onClick="onModifySaveClick"
+        android:id="@+id/ModifySaveButton"
+        android:layout_below="@id/textView9"
+        android:layout_marginTop="25dp"
+        android:layout_alignLeft="@id/textView9"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick another day"
+        android:id="@+id/ModifyBackButton"
+        android:layout_below="@id/textView9"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@id/ModifySaveButton"
+        android:layout_marginLeft="10dp"
+        />
+</RelativeLayout>
