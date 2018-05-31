@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
@@ -24,7 +23,6 @@ import static com.example.raydel.substantialsubs.utils.Utils.changeFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
 import static com.example.raydel.substantialsubs.utils.Utils.getInputText;
 import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
-
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -151,34 +149,4 @@ public class MainActivity extends AppCompatActivity
         changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new NewOrderFragment());
     }
 
-
-    public void onMonthExecuteClick(View view)
-    {
-        Spinner months = (Spinner) findViewById(R.id.monthsSpinner);
-        int pos = months.getSelectedItemPosition()+1;
-
-        Toast.makeText(this, "Month #" + Integer.toString(pos) + " was selected", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onYearExecuteClick(View view)
-    {
-        Spinner years = (Spinner) findViewById(R.id.yearsSpinner);
-        int pos = years.getSelectedItemPosition()+2015;
-
-        Toast.makeText(this, "Year " + Integer.toString(pos) + " was selected", Toast.LENGTH_SHORT).show();
-    }
-
-
-    public void onModifySaveClick (View view)
-    {
-        Toast.makeText(this,"Saved Successful", Toast.LENGTH_SHORT).show();
-    }
-    public void onAddLunchSaveClick (View view)
-    {
-        Toast.makeText(this,"Saved Successful", Toast.LENGTH_SHORT).show();
-    }
-    public void onAddNightSaveClick (View view)
-    {
-        Toast.makeText(this,"Saved Successful", Toast.LENGTH_SHORT).show();
-    }
 }

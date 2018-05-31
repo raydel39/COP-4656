@@ -7,11 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.raydel.substantialsubs.CalendarTools;
 import com.example.raydel.substantialsubs.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import lombok.NoArgsConstructor;
 
@@ -52,32 +48,10 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
-
-        setDateTextView(CalendarTools.CurrentCalendar);
-
     }
 
     public void setId(long id){
         this.id = id;
-    }
-
-    public static void setDateTextView (Calendar calendar) {
-
-        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
-        String date = df.format(calendar.getTime());
-
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        String dayOfWeek = sdf.format(calendar.getTime());
-
-//        TextView dateTextView = (TextView) view.findViewById(R.id.dateTextView_night);
-//        dateTextView_nighteTextView.setText(date);
-
-//        TextView dayOfWeekTextView = (TextView) view.findViewById(R.id.dayOftheWeekTextView_night);
-//        dayOfWeekTextView.setText(dayOfWeek);
-
-
-
-
     }
 
 }
