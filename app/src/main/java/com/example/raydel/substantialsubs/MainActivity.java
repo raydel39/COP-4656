@@ -24,6 +24,7 @@ import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
 import static com.example.raydel.substantialsubs.utils.Utils.getInputText;
 import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static Context context;

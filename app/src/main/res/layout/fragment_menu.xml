@@ -1,15 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".fragments.MenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        tools:text="Menu Items" />
+        android:id="@+id/MenuItems_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Menu Items"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/breakfast_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/MenuItems_TextView"
+        android:layout_toStartOf="@id/MenuItems_TextView"
+        android:layout_marginTop="15dp"
+        android:text="Breakfast"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/lunch_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/MenuItems_TextView"
+        android:layout_toEndOf="@id/MenuItems_TextView"
+        android:layout_marginTop="15dp"
+        android:text="Lunch"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/sides_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/breakfast_button"
+        android:layout_toStartOf="@id/MenuItems_TextView"
+        android:layout_marginTop="15dp"
+        android:text="Sides"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/drink_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/lunch_button"
+        android:layout_toEndOf="@id/MenuItems_TextView"
+        android:layout_marginTop="15dp"
+        android:text="Drinks"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/dessert_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/sides_button"
+        android:layout_toStartOf="@id/MenuItems_TextView"
+        android:layout_marginTop="15dp"
+        android:text="Dessert"
+        android:textSize="25sp"/>
+
+</RelativeLayout>
