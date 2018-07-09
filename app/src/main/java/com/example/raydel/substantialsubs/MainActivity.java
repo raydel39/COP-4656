@@ -25,6 +25,22 @@ import static com.example.raydel.substantialsubs.utils.Utils.getInputText;
 import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 
 
+//--------------------------------------------------------------------------
+// Author            :  Raydel Mesa
+// Date              :
+//--------------------------------------------------------------------------
+// Revision          :  1.0
+// Dependencies      :  lombok. Make sure pre processor annotations are enabled on the IDE as well
+// Description       :  Phone Order Processing for substantial subs
+// Simulation Notes  :
+// Synthesis Notes   :
+// Application Notes :
+// Simulator         :
+// Parameters        :
+//--------------------------------------------------------------------------
+// Revision History  :
+//--------------------------------------------------------------------------
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static Context context;
