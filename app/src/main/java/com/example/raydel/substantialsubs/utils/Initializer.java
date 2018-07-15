@@ -6,7 +6,6 @@ package com.example.raydel.substantialsubs.utils;
 import com.example.raydel.substantialsubs.model.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,11 +16,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Initializer {
 
-    private List<MenuItem> lunchItems = new ArrayList<>();
-    private List<MenuItem> breakfastItems = new ArrayList<>();
-    private List<MenuItem> sidesItems = new ArrayList<>();
-    private List<MenuItem> drinksItems = new ArrayList<>();
-    private List<MenuItem> dessertItems = new ArrayList<>();
+    private ArrayList<MenuItem> lunchItems = new ArrayList<>();
+    private ArrayList<MenuItem> breakfastItems = new ArrayList<>();
+    private ArrayList<MenuItem> sidesItems = new ArrayList<>();
+    private ArrayList<MenuItem> drinksItems = new ArrayList<>();
+    private ArrayList<MenuItem> dessertItems = new ArrayList<>();
 
 
     public Initializer(){
@@ -54,9 +53,9 @@ public class Initializer {
         drinksItems.add(new MenuItem("Cafe con Leche", 1.99, 0, "Milk with coffee"));
 
         //Dessert
-        drinksItems.add(new MenuItem("Chocolate Cake", 2.99, 0, "A slice of Six-Layer Chocolate Cake"));
-        drinksItems.add(new MenuItem("Carrot Cake", 2.99, 0, "A slice of Carrot Cake"));
-        drinksItems.add(new MenuItem("Chocolate Chips Cookies", 1.99, 0, "A small bag of homemade chocolate chips cookies"));
+        dessertItems.add(new MenuItem("Chocolate Cake", 2.99, 0, "A slice of Six-Layer Chocolate Cake"));
+        dessertItems.add(new MenuItem("Carrot Cake", 2.99, 0, "A slice of Carrot Cake"));
+        dessertItems.add(new MenuItem("Chocolate Chips Cookies", 1.99, 0, "A small bag of homemade chocolate chips cookies"));
     }
 
 }

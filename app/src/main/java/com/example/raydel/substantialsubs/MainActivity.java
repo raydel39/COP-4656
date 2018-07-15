@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
 import com.example.raydel.substantialsubs.fragments.MenuFragment;
+import com.example.raydel.substantialsubs.fragments.MenuItemsFragment;
 import com.example.raydel.substantialsubs.fragments.NewOrderFragment;
 import com.example.raydel.substantialsubs.fragments.SettingsFragment;
 import com.example.raydel.substantialsubs.model.Order;
+import com.example.raydel.substantialsubs.utils.Initializer;
 
 import static com.example.raydel.substantialsubs.utils.Utils.changeFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
@@ -40,10 +42,16 @@ import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 //--------------------------------------------------------------------------
 // Revision History  :
 //--------------------------------------------------------------------------
+//  Date             : Change
+//--------------------------------------------------------------------------
+//  07/14/2018       : Initialing Menu Items
+//  07/15/2018       : Adding List fragments for menu items
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuItemsFragment.OnListFragmentInteractionListener {
     public static Context context;
+
+    private Initializer dataInit = new Initializer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,4 +174,33 @@ public class MainActivity extends AppCompatActivity
         changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new NewOrderFragment());
     }
 
+    public void breakfast_onClick (View view) {
+        changeFragment(getFragmentManager().beginTransaction(),
+                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getBreakfastItems()));
+    }
+
+    public void lunch_onClick (View view) {
+        changeFragment(getFragmentManager().beginTransaction(),
+                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getLunchItems()));
+    }
+
+    public void sides_onClick (View view) {
+        changeFragment(getFragmentManager().beginTransaction(),
+                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getSidesItems()));
+    }
+
+    public void drinks_onClick (View view) {
+        changeFragment(getFragmentManager().beginTransaction(),
+                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getDrinksItems()));
+    }
+
+    public void dessert_onClick (View view) {
+        changeFragment(getFragmentManager().beginTransaction(),
+                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getDessertItems()));
+    }
+
+        @Override
+    public void onListFragmentInteraction(com.example.raydel.substantialsubs.model.MenuItem item) {
+            Toast.makeText(this, "You selected: " + item.getName(), Toast.LENGTH_SHORT).show();
+    }
 }
