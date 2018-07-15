@@ -10,15 +10,6 @@
             android:id="@+id/settings"
             android:icon="@drawable/settings"
             android:title="Settings" />
-
-        <item
-            android:id="@+id/nav_modify"
-            android:icon="@drawable/modify"
-            android:title="Modify Existing Numbers" />
-        <item
-            android:id="@+id/nav_summaries"
-            android:icon="@drawable/summary"
-            android:title="Summaries" />
     </group>
 
 </menu>

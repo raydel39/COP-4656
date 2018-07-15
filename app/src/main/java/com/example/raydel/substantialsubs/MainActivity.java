@@ -32,10 +32,10 @@ import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 // Revision          :  1.0
 // Dependencies      :  lombok. Make sure pre processor annotations are enabled on the IDE as well
 // Description       :  Phone Order Processing for substantial subs
-// Simulation Notes  :
+// Simulation Notes  :  Please use Nexus 10, Android 8.0.0 or any other table simulator
 // Synthesis Notes   :
 // Application Notes :
-// Simulator         :
+// Simulator         :  Nexus 10, Android 8.0.0
 // Parameters        :
 //--------------------------------------------------------------------------
 // Revision History  :
