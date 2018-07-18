@@ -1,6 +1,8 @@
 package com.example.raydel.substantialsubs;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,9 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
@@ -46,6 +50,7 @@ import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 //--------------------------------------------------------------------------
 //  07/14/2018       : Initialing Menu Items
 //  07/15/2018       : Adding List fragments for menu items
+//  07/17/2018       : User can now select the amount of items they want from the menu
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuItemsFragment.OnListFragmentInteractionListener {
@@ -201,6 +206,64 @@ public class MainActivity extends AppCompatActivity
 
         @Override
     public void onListFragmentInteraction(com.example.raydel.substantialsubs.model.MenuItem item) {
-            Toast.makeText(this, "You selected: " + item.getName(), Toast.LENGTH_SHORT).show();
-    }
+
+            // get qty_dialog.xml view
+            LayoutInflater li = LayoutInflater.from(context);
+            View qtyDialogView = li.inflate(R.layout.qty_dialog, null);
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+            // set qty_dialog.xml to alertdialog builder
+            alertDialogBuilder.setView(qtyDialogView);
+
+            TextView questionTextView = (TextView) qtyDialogView.findViewById(R.id.textView1);
+            questionTextView.setText("How many " + item.getName() + " would you like?");
+
+            TextView qtyTextView = (TextView) qtyDialogView.findViewById(R.id.QtytextView);
+            qtyTextView.setText(Integer.toString(item.getQuantity()));
+
+            qtyDialogView.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int qty = Integer.parseInt(qtyTextView.getText().toString());
+                    qty++;
+                    qtyTextView.setText(Integer.toString(qty));
+                    item.setQuantity(qty);
+                }
+            });
+
+            qtyDialogView.findViewById(R.id.minusButton).setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int qty = Integer.parseInt(qtyTextView.getText().toString());
+
+                    if(qty > 0) qty--;
+                    qtyTextView.setText(Integer.toString(qty));
+                    item.setQuantity(qty);
+                }
+            });
+
+
+            // set dialog message
+            alertDialogBuilder
+                    .setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    changeFragment(getFragmentManager().beginTransaction(),
+                                            R.id.fragment_main, MenuItemsFragment.newInstance(MenuItemsFragment.menuItems));
+                                    Toast.makeText(MainActivity.this, item.getQuantity() + " " + item.getName() + " added to cart..", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                    .setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    Toast.makeText(MainActivity.this, "Selection cancelled", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }
 }

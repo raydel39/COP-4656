@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MenuItemsFragment extends Fragment {
 
     private static final String ARG_MENU_ITEMS = "menu_items";
-    private static ArrayList<MenuItem> menuItems = new ArrayList<>();
+    public static ArrayList<MenuItem> menuItems = new ArrayList<>();
     private OnListFragmentInteractionListener mListener;
 
     /**

@@ -39,6 +39,7 @@ public class MyMenuItemsRecyclerViewAdapter extends RecyclerView.Adapter<MyMenuI
         holder.nameView.setText(menuItems.get(position).getName());
         holder.priceView.setText(String.valueOf(menuItems.get(position).getPrice()));
         holder.descriptionView.setText(menuItems.get(position).getDescription());
+        holder.qtyView.setText(Integer.toString(menuItems.get(position).getQuantity()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +63,7 @@ public class MyMenuItemsRecyclerViewAdapter extends RecyclerView.Adapter<MyMenuI
         public final TextView nameView;
         public final TextView priceView;
         public final TextView descriptionView;
+        public final TextView qtyView;
         public MenuItem menuItem;
 
         public ViewHolder(View view) {
@@ -70,6 +72,7 @@ public class MyMenuItemsRecyclerViewAdapter extends RecyclerView.Adapter<MyMenuI
             nameView = (TextView) view.findViewById(R.id.menuItemNameTextView);
             priceView = (TextView) view.findViewById(R.id.priceTextView);
             descriptionView = (TextView) view.findViewById(R.id.menuItemDescriptionTextView);
+            qtyView = (TextView) view.findViewById(R.id.selectedQtyTextView);
         }
     }
 }
