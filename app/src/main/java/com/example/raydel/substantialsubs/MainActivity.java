@@ -1,6 +1,7 @@
 package com.example.raydel.substantialsubs;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,22 +14,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
-import com.example.raydel.substantialsubs.fragments.MenuFragment;
 import com.example.raydel.substantialsubs.fragments.MenuItemsFragment;
+import com.example.raydel.substantialsubs.fragments.NavigationFragment;
 import com.example.raydel.substantialsubs.fragments.NewOrderFragment;
 import com.example.raydel.substantialsubs.fragments.SettingsFragment;
 import com.example.raydel.substantialsubs.model.Order;
 import com.example.raydel.substantialsubs.utils.Initializer;
+import com.example.raydel.substantialsubs.utils.Utils;
 
 import static com.example.raydel.substantialsubs.utils.Utils.changeFragment;
+import static com.example.raydel.substantialsubs.utils.Utils.currFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
-import static com.example.raydel.substantialsubs.utils.Utils.getInputText;
-import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
+import static com.example.raydel.substantialsubs.utils.Utils.handleBackwardNavigation;
+import static com.example.raydel.substantialsubs.utils.Utils.handleForwardNavigation;
+import static com.example.raydel.substantialsubs.utils.Utils.navFragment;
 
 
 //--------------------------------------------------------------------------
@@ -51,6 +54,7 @@ import static com.example.raydel.substantialsubs.utils.Utils.validateAddress;
 //  07/14/2018       : Initialing Menu Items
 //  07/15/2018       : Adding List fragments for menu items
 //  07/17/2018       : User can now select the amount of items they want from the menu
+//  07/22/2018       : Adding Navigation between fragments
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuItemsFragment.OnListFragmentInteractionListener {
@@ -76,7 +80,17 @@ public class MainActivity extends AppCompatActivity
         context = this;
 
         currentOrder = new Order();
-        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new NewOrderFragment());
+        NavigationFragment navigationFragment = new NavigationFragment();
+        Utils.navFragment = navigationFragment;
+        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_nav, navigationFragment);
+
+
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        handleForwardNavigation(this, new NewOrderFragment());
     }
 
     @Override
@@ -111,97 +125,68 @@ public class MainActivity extends AppCompatActivity
     /**** On Click Functions ****/
     public void pickUp_onClick (View view){
         currentOrder.setDelivery(false);
-        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new CustomerDetailsFragment());
-
+        CustomerDetailsFragment fragment = new CustomerDetailsFragment();
+        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, fragment);
+        Utils.currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        navFragment.getView().findViewById(R.id.back_button).setVisibility(View.VISIBLE);
     }
 
     public void delivery_onClick (View view){
         currentOrder.setDelivery(true);
-        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new CustomerDetailsFragment());
+        CustomerDetailsFragment fragment = new CustomerDetailsFragment();
+        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, fragment);
+        Utils.currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        navFragment.getView().findViewById(R.id.back_button).setVisibility(View.VISIBLE);
     }
 
-    public void custDetailsNext_onClick (View view){
-
-        currentOrder.setName(getInputText(this, R.id.name_editText));
-        currentOrder.setPhone(getInputText(this, R.id.phone_editText));
-
-        if(currentOrder.isDelivery()) {
-            currentOrder.setAddress(getInputText(this, R.id.address_editText));
-            currentOrder.setCcNumber(getInputText(this, R.id.ccNumber_editText));
-            currentOrder.setCcExpMM(getInputText(this, R.id.ccExpMM_editText));
-            currentOrder.setCcExpYYYY(getInputText(this, R.id.ccExpYYYY_editText));
-            currentOrder.setCcCVV(getInputText(this, R.id.ccCVV_editText));
-
-
-            RadioGroup paymentMethod = (RadioGroup) this.findViewById(R.id.paymentMethod_radioGroup);
-
-            switch (paymentMethod.getCheckedRadioButtonId()) {
-                case R.id.cash_radioButton:
-                    currentOrder.setCard(false);
-                    break;
-                case R.id.creditCard_radioButton:
-                    currentOrder.setCard(true);
-                    break;
-                default:
-                    Toast.makeText(this, "Invalid Payment Method", Toast.LENGTH_SHORT).show();
-                    return;
-            }
-
-            validateAddress(this);
-        }else {
-            changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new MenuFragment());
-        }
+    public void next_onClick (View view){
+        handleForwardNavigation(this, currFragment);
     }
 
-    public void custDetailsBack_onClick (View view){
-
-        currentOrder.setName(getInputText(this, R.id.name_editText));
-        currentOrder.setPhone(getInputText(this, R.id.phone_editText));
-        currentOrder.setAddress(getInputText(this, R.id.address_editText));
-        currentOrder.setCcNumber(getInputText(this, R.id.ccNumber_editText));
-        currentOrder.setCcExpMM(getInputText(this, R.id.ccExpMM_editText));
-        currentOrder.setCcExpYYYY(getInputText(this, R.id.ccExpYYYY_editText));
-        currentOrder.setCcCVV(getInputText(this, R.id.ccCVV_editText));
-
-
-        RadioGroup paymentMethod = (RadioGroup) this.findViewById(R.id.paymentMethod_radioGroup);
-
-        switch (paymentMethod.getCheckedRadioButtonId()) {
-            case R.id.cash_radioButton:
-                currentOrder.setCard(false);
-                break;
-            case R.id.creditCard_radioButton:
-                currentOrder.setCard(true);
-                break;
-            default:
-        }
-
-        changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new NewOrderFragment());
+    public void back_onClick (View view){
+        handleBackwardNavigation(this, currFragment);
     }
 
     public void breakfast_onClick (View view) {
+        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getBreakfastItems());
         changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getBreakfastItems()));
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
     }
 
     public void lunch_onClick (View view) {
+        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getLunchItems());
         changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getLunchItems()));
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
     }
 
     public void sides_onClick (View view) {
+        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getSidesItems());
         changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getSidesItems()));
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
     }
 
     public void drinks_onClick (View view) {
+        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getDrinksItems());
         changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getDrinksItems()));
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
     }
 
     public void dessert_onClick (View view) {
+        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getDessertItems());
         changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main, MenuItemsFragment.newInstance(dataInit.getDessertItems()));
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
     }
 
         @Override

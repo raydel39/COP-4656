@@ -147,31 +147,4 @@
         android:text="/"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-    <Button
-        android:id="@+id/custDetailsBack_button"
-        style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="100dp"
-        android:layout_marginLeft="50dp"
-        android:onClick="custDetailsBack_onClick"
-        android:text="Back" />
-
-    <Button
-        android:id="@+id/custDetailsNext_button"
-        style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="100dp"
-        android:layout_marginRight="50dp"
-        android:onClick="custDetailsNext_onClick"
-        android:text="Next" />
-
-
-
-
 </RelativeLayout>
