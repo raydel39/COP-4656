@@ -28,5 +28,4 @@
         android:layout_marginRight="50dp"
         android:onClick="next_onClick"
         android:text="Next" />
-
 </RelativeLayout>

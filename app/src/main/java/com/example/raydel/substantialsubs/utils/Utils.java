@@ -15,6 +15,7 @@ import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
 import com.example.raydel.substantialsubs.fragments.MenuFragment;
 import com.example.raydel.substantialsubs.fragments.MenuItemsFragment;
 import com.example.raydel.substantialsubs.fragments.NewOrderFragment;
+import com.example.raydel.substantialsubs.fragments.PreviewFragment;
 import com.example.raydel.substantialsubs.model.MenuItem;
 import com.example.raydel.substantialsubs.model.Order;
 
@@ -61,6 +62,7 @@ public class Utils {
             navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
             navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
             ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
+            ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("NEXT");
 
             currFragment = currentfragment;
 
@@ -91,15 +93,31 @@ public class Utils {
                 }
 
                 validateAddress(activity);
-            }else {
+            } else {
                 changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, menuFragment);
                 currFragment = menuFragment;
                 navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
             }
-        }
 
-//        //Execute pending transactions
-//        activity.getFragmentManager().executePendingTransactions();
+        } else if(currentfragment instanceof MenuItemsFragment){
+            PreviewFragment previewFragment = new PreviewFragment();
+            changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, previewFragment);
+            currFragment = previewFragment;
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("EDIT");
+            ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("SUBMIT");
+
+        }else if(currentfragment instanceof PreviewFragment){
+            Toast.makeText(activity, "Your order was submitted it!", Toast.LENGTH_SHORT).show();
+
+            currentOrder = new Order();
+            NewOrderFragment orderFragment = new NewOrderFragment();
+            changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, orderFragment);
+
+            navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
+            navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
+            ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("NEXT");
+        }
     }
 
     //Method to handle forward navigation between fragments
@@ -144,6 +162,13 @@ public class Utils {
             fragment = new MenuFragment();
             navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
             ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
+
+        }else if(currentfragment instanceof PreviewFragment){
+            fragment = new NewOrderFragment();
+            navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
+            navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
+            ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("NEXT");
         }
 
 

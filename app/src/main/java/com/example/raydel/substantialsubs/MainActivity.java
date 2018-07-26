@@ -56,6 +56,7 @@ import static com.example.raydel.substantialsubs.utils.Utils.navFragment;
 //  07/15/2018       : Adding List fragments for menu items
 //  07/17/2018       : User can now select the amount of items they want from the menu
 //  07/22/2018       : Adding Navigation between fragments
+//  07/25/2018       : Adding Review Fragment
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuItemsFragment.OnListFragmentInteractionListener {
@@ -84,8 +85,6 @@ public class MainActivity extends AppCompatActivity
         NavigationFragment navigationFragment = new NavigationFragment();
         Utils.navFragment = navigationFragment;
         changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_nav, navigationFragment);
-
-
     }
 
     @Override
@@ -115,6 +114,7 @@ public class MainActivity extends AppCompatActivity
             navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
             navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
             ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
+            ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("NEXT");
             currentOrder = new Order();
 
         } else if (id == R.id.settings) {
