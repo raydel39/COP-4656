@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/MenuItems_TextView"
         android:layout_marginTop="15dp"
-        android:layout_toStartOf="@id/MenuItems_TextView"
+        android:layout_toLeftOf="@+id/lunch_button"
+        android:layout_marginRight="80dp"
         android:minHeight="180dp"
         android:minWidth="200dp"
         android:onClick="breakfast_onClick"
@@ -42,8 +43,8 @@
         android:minWidth="200dp"
         android:minHeight="180dp"
         android:layout_below="@+id/MenuItems_TextView"
-        android:layout_toEndOf="@id/MenuItems_TextView"
         android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
         android:onClick="lunch_onClick"
         android:text="Lunch"
         android:textSize="25sp" />
@@ -55,11 +56,27 @@
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="180dp"
-        android:layout_below="@+id/breakfast_button"
-        android:layout_toStartOf="@id/MenuItems_TextView"
+        android:layout_below="@+id/MenuItems_TextView"
         android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/lunch_button"
+        android:layout_marginLeft="80dp"
         android:onClick="sides_onClick"
         android:text="Sides"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/dessert_button"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="180dp"
+        android:layout_below="@+id/breakfast_button"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@+id/drink_button"
+        android:layout_marginRight="80dp"
+        android:onClick="dessert_onClick"
+        android:text="Dessert"
         android:textSize="25sp"/>
 
     <Button
@@ -70,24 +87,10 @@
         android:minWidth="200dp"
         android:minHeight="180dp"
         android:layout_below="@+id/lunch_button"
-        android:layout_toEndOf="@id/MenuItems_TextView"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
         android:onClick="drinks_onClick"
         android:text="Drinks"
-        android:textSize="25sp"/>
-
-    <Button
-        android:id="@+id/dessert_button"
-        style="@android:style/Widget.Material.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="200dp"
-        android:minHeight="180dp"
-        android:layout_below="@+id/sides_button"
-        android:layout_toStartOf="@id/MenuItems_TextView"
-        android:layout_marginTop="15dp"
-        android:onClick="dessert_onClick"
-        android:text="Dessert"
         android:textSize="25sp"/>
 
 </RelativeLayout>

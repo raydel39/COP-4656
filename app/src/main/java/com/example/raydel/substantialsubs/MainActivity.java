@@ -1,7 +1,6 @@
 package com.example.raydel.substantialsubs;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +31,7 @@ import static com.example.raydel.substantialsubs.utils.Utils.currFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
 import static com.example.raydel.substantialsubs.utils.Utils.handleBackwardNavigation;
 import static com.example.raydel.substantialsubs.utils.Utils.handleForwardNavigation;
+import static com.example.raydel.substantialsubs.utils.Utils.menuItem_onCLick;
 import static com.example.raydel.substantialsubs.utils.Utils.navFragment;
 
 
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.new_order) {
             changeFragment(getFragmentManager().beginTransaction(),R.id.fragment_main, new NewOrderFragment());
+            navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
+            navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
             currentOrder = new Order();
 
         } else if (id == R.id.settings) {
@@ -150,43 +154,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void breakfast_onClick (View view) {
-        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getBreakfastItems());
-        changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main,  fragment);
-        currFragment = fragment;
-        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        menuItem_onCLick(this, dataInit.getBreakfastItems());
     }
 
     public void lunch_onClick (View view) {
-        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getLunchItems());
-        changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main,  fragment);
-        currFragment = fragment;
-        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        menuItem_onCLick(this, dataInit.getLunchItems());
     }
 
     public void sides_onClick (View view) {
-        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getSidesItems());
-        changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main,  fragment);
-        currFragment = fragment;
-        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        menuItem_onCLick(this, dataInit.getSidesItems());
     }
 
     public void drinks_onClick (View view) {
-        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getDrinksItems());
-        changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main,  fragment);
-        currFragment = fragment;
-        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        menuItem_onCLick(this, dataInit.getDrinksItems());
     }
 
     public void dessert_onClick (View view) {
-        Fragment fragment = MenuItemsFragment.newInstance(dataInit.getDessertItems());
-        changeFragment(getFragmentManager().beginTransaction(),
-                R.id.fragment_main,  fragment);
-        currFragment = fragment;
-        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        menuItem_onCLick(this, dataInit.getDessertItems());
     }
 
         @Override

@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -14,7 +15,10 @@ import com.example.raydel.substantialsubs.fragments.CustomerDetailsFragment;
 import com.example.raydel.substantialsubs.fragments.MenuFragment;
 import com.example.raydel.substantialsubs.fragments.MenuItemsFragment;
 import com.example.raydel.substantialsubs.fragments.NewOrderFragment;
+import com.example.raydel.substantialsubs.model.MenuItem;
 import com.example.raydel.substantialsubs.model.Order;
+
+import java.util.ArrayList;
 
 import static com.example.raydel.substantialsubs.constants.SubstantialConstants.API_KEY;
 import static com.example.raydel.substantialsubs.constants.SubstantialConstants.LOCATION_API_BASE_URL;
@@ -56,6 +60,7 @@ public class Utils {
             changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, currentfragment);
             navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
             navFragment.getView().findViewById(R.id.back_button).setVisibility(View.GONE);
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
 
             currFragment = currentfragment;
 
@@ -138,11 +143,21 @@ public class Utils {
         } else if(currentfragment instanceof MenuItemsFragment){
             fragment = new MenuFragment();
             navFragment.getView().findViewById(R.id.next_button).setVisibility(View.GONE);
+            ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("BACK");
         }
 
 
         currFragment = fragment;
         changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, fragment);
+    }
+
+    public static void menuItem_onCLick (Activity activity, ArrayList<MenuItem> menuItems){
+        Fragment fragment = MenuItemsFragment.newInstance(menuItems);
+        changeFragment(activity.getFragmentManager().beginTransaction(),
+                R.id.fragment_main,  fragment);
+        currFragment = fragment;
+        navFragment.getView().findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+        ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("SELECT OTHER MENU ITEMS");
     }
 
     public static String getInputText (Activity activity, int id){
