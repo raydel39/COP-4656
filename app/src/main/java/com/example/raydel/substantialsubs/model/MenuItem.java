@@ -46,4 +46,7 @@ public class MenuItem implements Parcelable{
         dest.writeString(description);
     }
 
+    public String toString(){
+        return "<h3>"+ name +"\t\t\t$" + price + "\tX\t" + quantity + "</h3>";
+    }
 }

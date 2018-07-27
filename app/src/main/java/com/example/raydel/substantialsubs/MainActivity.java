@@ -23,12 +23,12 @@ import com.example.raydel.substantialsubs.fragments.NavigationFragment;
 import com.example.raydel.substantialsubs.fragments.NewOrderFragment;
 import com.example.raydel.substantialsubs.fragments.SettingsFragment;
 import com.example.raydel.substantialsubs.model.Order;
-import com.example.raydel.substantialsubs.utils.Initializer;
 import com.example.raydel.substantialsubs.utils.Utils;
 
 import static com.example.raydel.substantialsubs.utils.Utils.changeFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currFragment;
 import static com.example.raydel.substantialsubs.utils.Utils.currentOrder;
+import static com.example.raydel.substantialsubs.utils.Utils.dataInit;
 import static com.example.raydel.substantialsubs.utils.Utils.handleBackwardNavigation;
 import static com.example.raydel.substantialsubs.utils.Utils.handleForwardNavigation;
 import static com.example.raydel.substantialsubs.utils.Utils.menuItem_onCLick;
@@ -57,12 +57,11 @@ import static com.example.raydel.substantialsubs.utils.Utils.navFragment;
 //  07/17/2018       : User can now select the amount of items they want from the menu
 //  07/22/2018       : Adding Navigation between fragments
 //  07/25/2018       : Adding Review Fragment
+//  07/25/2018       : Adding HTML string to Order
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuItemsFragment.OnListFragmentInteractionListener {
     public static Context context;
-
-    private Initializer dataInit = new Initializer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

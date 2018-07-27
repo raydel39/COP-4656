@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.raydel.substantialsubs.R;
@@ -37,6 +39,7 @@ public class Utils {
     public static Order currentOrder;
     public static Fragment currFragment;
     public static Fragment navFragment;
+    public static Initializer dataInit = new Initializer();
 
     public static void changeFragment(FragmentTransaction ft, int id, Fragment fragment){
 
@@ -106,6 +109,10 @@ public class Utils {
             ((Button) navFragment.getView().findViewById(R.id.back_button)).setText("EDIT");
             ((Button) navFragment.getView().findViewById(R.id.next_button)).setText("SUBMIT");
 
+            activity.getFragmentManager().executePendingTransactions();
+
+            ((TextView) currFragment.getView().findViewById(R.id.previewOrderTextview)).setText(Html.fromHtml(currentOrder.toString(),Html.FROM_HTML_MODE_COMPACT));
+
         }else if(currentfragment instanceof PreviewFragment){
             Toast.makeText(activity, "Your order was submitted it!", Toast.LENGTH_SHORT).show();
 
@@ -174,6 +181,35 @@ public class Utils {
 
         currFragment = fragment;
         changeFragment(activity.getFragmentManager().beginTransaction(),R.id.fragment_main, fragment);
+    }
+
+    public static double handleSelectedItems(StringBuilder html){
+
+        double total = 0;
+
+        total += handleSingleList(dataInit.getBreakfastItems(),html);
+        total += handleSingleList(dataInit.getLunchItems(),html);
+        total += handleSingleList(dataInit.getSidesItems(),html);
+        total += handleSingleList(dataInit.getDrinksItems(),html);
+        total += handleSingleList(dataInit.getDessertItems(),html);
+
+        return total;
+    }
+
+    private static double handleSingleList(ArrayList<MenuItem> menuItems, StringBuilder html){
+
+        double total = 0;
+
+        for(MenuItem menuItem : menuItems){
+            if(menuItem.getQuantity() > 0){
+                html.append(menuItem.toString())
+                    .append("<br>");
+
+                total += menuItem.getPrice();
+            }
+        }
+
+        return total;
     }
 
     public static void menuItem_onCLick (Activity activity, ArrayList<MenuItem> menuItems){

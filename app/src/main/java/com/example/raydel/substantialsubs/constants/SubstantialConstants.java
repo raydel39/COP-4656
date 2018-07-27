@@ -11,5 +11,6 @@ public final class SubstantialConstants {
     public static final String LOCATION_API_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial";
     public static final String URL_ORIGIN = "origins=";
     public static final String URL_DESTINATION = "destinations=";
+    public static final String HTML_CENTER = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
 
 }
